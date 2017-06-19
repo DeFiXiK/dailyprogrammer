@@ -1,5 +1,5 @@
 from itertools import permutations
-# https://www.reddit.com/r/dailyprogrammer/comments/6fe9cv/20170605_challenge_318_easy_countdown_game_show/
+
 
 def main():
     inp_values = []
@@ -15,6 +15,7 @@ def main():
         buff = print_ops_nums(num, ops)
         print(buff)
 
+
 def print_ops_nums(nums, ops):
     result = nums[-1]
     nums = nums[:-1]
@@ -25,6 +26,7 @@ def print_ops_nums(nums, ops):
     buff + '=' + str(result)
     return buff
 
+
 def get_ops(inp):
     buff = inp[-1]
     inp = inp[:-1]
@@ -33,6 +35,7 @@ def get_ops(inp):
             result = build_and_calc(ops, num)
             if result == buff:
                 return ops, num + (buff,)
+
 
 def all_ops_combinations(length):
     OPS = [
@@ -47,22 +50,24 @@ def all_ops_combinations(length):
         return
 
     for op in OPS:
-        for comb in all_ops_combinations(length-1):
+        for comb in all_ops_combinations(length - 1):
             yield op + comb
+
 
 def build_and_calc(ops, lst):
     buff = lst[0]
     lst = lst[1:]
     for number, oper in zip(lst, ops):
         if oper == '+':
-            buff +=number
+            buff += number
         if oper == '-':
-            buff -=number
+            buff -= number
         if oper == '*':
-            buff *=number
+            buff *= number
         if oper == '/':
-            buff /=number
+            buff /= number
     return buff
+
 
 if __name__ == '__main__':
     main()
